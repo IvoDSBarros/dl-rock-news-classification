@@ -17,13 +17,13 @@ In general, the results from the experiments confirmed the superior performance 
 <summary> Table of Contents </summary>
 
 1. [Limitations and challenges](#1-limitations-and-challenges)
-2. [Model 1: CNN-BiLSTM with GloVe Embeddings and Attention](#2-model-1-cnn-bi-lstm-with-glove-embeddings-and-attention)
+2. [Model 1: CNN-BiLSTM with GloVe Embeddings and Attention](#2-model-1-cnn-bilstm-with-glove-embeddings-and-attention)
     * [Methodology](#21-methodology)
     * [Results](#22-results)
 3. [Model 2: Transformer-based model (DistilBERT)](#3-model-2-transformer-based-model-distilbert)
     * [Methodology](#31-methodology)
     * [Results](#32-results)
-4. [References](#references)
+[References](#references)
 
 </details>
 
@@ -134,5 +134,6 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 + [Grivas, A., Vergari, A., Lopez, A. (2024) Taming the Sigmoid Bottleneck: Provably Argmaxable Sparse Multi-Label Classification. Proceedings of the AAAI Conference on Artificial Intelligence, 38(11), 12208-12216.](https://www.pure.ed.ac.uk/ws/portalfiles/portal/408679788/Taming_the_Sigmoid_GRIVAS_DOA09122023_AFV_CC_BY.pdf)
 + [Brownlee, J. (2020) Machine Learning Mastery.](https://machinelearningmastery.com/multi-label-classification-with-deep-learning/)
 + [Szymański, P., Kajdanowicz, T. (2016) A scikit-based Python environment for performing multi-label classification. Journal of Machine Learning Research, 1, 1-15.](https://www.jmlr.org/papers/volume20/17-100/17-100.pdf)
+
 
 
