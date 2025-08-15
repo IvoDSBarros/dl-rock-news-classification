@@ -126,7 +126,7 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 + Finally, 'rehab' remains the most challenging category. With only 2-4 instances in the entire dataset, the model consistently yielded 0.00 for precision, recall, and F1-score across all reported folds. Significant improvement for this extremely rare category will likely require data augmentation or specialized handling strategies.
 
 ### 3.2.4. Conclusion
-+ In summary, the DistilBERT model delivers exceptionally high performance for multi-label rock news classification, and its performance was further optimized through threshold tuning. 
++ In summary, the DistilBERT model delivers exceptionally high performance for multi-label rock news classification  and was further refined through threshold tuning. 
 + The strong generalizability and effectiveness across most categories are supported by the remarkable average optimized Micro-F1 score above 0.995 and Macro-F1 score above 0.992.
 + Despite the fact that training dynamics reflect robust learning, the primary remaining challenge lies in the accurate classification of extremely rare categories like 'rehab'. Addressing these edge cases might require further data-centric strategies, but for the vast majority of the labels, DistilBERT stands as a highly proficient and accurate classifier.
 + When compared to the AdaBoostClassifier from the previous study, the transformer-based DistilBERT model proved to be a more effective solution. Even with the AdaBoostClassifier’s high baseline (Micro-average F1: 0.990, Macro-average F1: 0.976), the DistilBERT model surpassed these metrics (Micro-average F1: ~0.9957, Macro-average F1: ~0.9924), emphasizing its outsanding representational capacity and contextual understanding.
@@ -135,6 +135,7 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 + [Grivas, A., Vergari, A., Lopez, A. (2024) Taming the Sigmoid Bottleneck: Provably Argmaxable Sparse Multi-Label Classification. Proceedings of the AAAI Conference on Artificial Intelligence, 38(11), 12208-12216.](https://www.pure.ed.ac.uk/ws/portalfiles/portal/408679788/Taming_the_Sigmoid_GRIVAS_DOA09122023_AFV_CC_BY.pdf)
 + [Brownlee, J. (2020) Machine Learning Mastery.](https://machinelearningmastery.com/multi-label-classification-with-deep-learning/)
 + [Szymański, P., Kajdanowicz, T. (2016) A scikit-based Python environment for performing multi-label classification. Journal of Machine Learning Research, 1, 1-15.](https://www.jmlr.org/papers/volume20/17-100/17-100.pdf)
+
 
 
 
