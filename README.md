@@ -40,6 +40,8 @@ The first deep learning architecture implemented in this project is a hybrid mod
 
 **Table 1. Model evaluation metrics for different GloVe embeddings**
 
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/table_01.PNG))
+
 <br>
 
 + The standard practice for multi-label classification problems is to use sigmoid activation in the output layer (Brownlee, 2020; Grivas et al, 2024). This approach treats each label as an independent binary classification task, with its own dedicated sigmoid activation function.
@@ -54,11 +56,15 @@ The first deep learning architecture implemented in this project is a hybrid mod
 
 **Figure 1. Micro F1 Score by epoch**
 
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/figure_01.png)
+
 <br>
 
 <br>
 
 **Figure 2. Model Loss by epoch**
+
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/figure_02.png)
 
 <br>
 
@@ -71,6 +77,8 @@ The Micro-average F1 Score of 0.897 is a key indicator of the model's strong ove
 <br>
 
 **Table 2. Model evaluation metrics with Optimal Threshold (0.30)**
+
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/table_02.PNG)
 
 <br>
 
@@ -92,14 +100,24 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 
 **Table 3. Model evaluation metrics with Optimal Threshold**
 
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/table_03.PNG)
+
 <br>
 
 + The exceptionally high scores, achieved by applying the post-training threshold optimization, are indicative of the model's robust generalizability and high classification accuracy across nearly all categories.
 + In particular, the Micro-F1 Score, being extremely close to 1, confirms that the model correctly identified the vast majority of true positive labels. In addition, the Macro-F1 Score, which equally weights each class regardless of its frequency, showed superb performance even across less frequent categories.
 
 ### 3.2.2. Training Dynamics and Convergence
-+ The analysis of the loss curves across all folds (Figure 3) provides clear evidence of the model's robust learning process. The training loss (green line) consistently decreased and subsequently stabilized over the epochs, which is characteristic of effective data fitting. 
++ The analysis of the loss curves across all folds (see Figure 3) provides clear evidence of the model's robust learning process. The training loss (green line) consistently decreased and subsequently stabilized over the epochs, which is characteristic of effective data fitting. 
 + Similarly, the validation loss (brown line) replicated this trend of reduction and subsequent stabilization, confirming the model's ability for generalization to unseen data. These plots are independent of the classification threshold applied post-training and attest the model's internal learning convergence.
+
+<br>
+
+**Figure 3. DistilBERT Individual Fold Loss Curves**
+
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/figure_02.png)
+
+<br>
 
 ### 3.2.3. Detailed Fold-wise Analysis: Strengths and Challenges
 + The majority of categories, including common rock topics such as "album", "tour", "video", and "award", consistently achieved near-perfect precision, recall, and F1-scores across all folds.
