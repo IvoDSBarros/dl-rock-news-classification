@@ -1,4 +1,4 @@
-# Deep Learning for Multi-label Rock News Classification (Weak Supervision Approach)
+# Deep Learning for Multi-label Rock News Classification
 # Overview
 As a continuation and final exploration of previous classification systems, including general NLP tasks on rock news articles ([Rock is not dead: NLP experiments on rock news articles](https://github.com/IvoDSBarros/rock-is-not-dead_nlp-experiments-on-rock-news-articles/tree/main)) and a prior weakly supervised multi-label approach ([Multilabel classification task on rock news articles](https://github.com/IvoDSBarros/multilabel_classification)), the deep learning project presented in this repository focuses on assigning topic labels to a dataset of rock news headlines. Specifically, it represents the second weakly supervised approach where the label assignments are derived from an antecedent rule-based classification model (for details, see [Rule-based Text Classification](https://github.com/IvoDSBarros/rock-is-not-dead_nlp-experiments-on-rock-news-articles/blob/main/README.md#rule-based-text-classification).
 Several deep learning strategies were tested for this weakly supervised multi-label problem leveraging Tensor Flow, namely:
@@ -115,7 +115,7 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 
 **Figure 3. DistilBERT Individual Fold Loss Curves**
 
-![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/47c30b7f8c889aee3a0053e6646ce02fa35ed5fe/assets/figure_02.png)
+![](https://github.com/IvoDSBarros/dl-rock-news-classification/blob/c0823a87ee1f5539077d7771c4cf35bf36a111eb/assets/figure_03.png)
 
 <br>
 
