@@ -9,18 +9,21 @@ import tensorflow as tf
 import pickle
 import os
 import pandas as pd
-from transformers import TFAutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoTokenizer
 
 ## SET UP PATHS AND DIRECTORIES
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ASSETS_DIR = os.path.join(os.path.dirname(SCRIPT_DIR), 'assets', 'distilbert')
-MODEL_FOLDER_PATH = os.path.join(ASSETS_DIR, 'multilabel_fold_5_distilbert')
+QUANTIZED_MODEL_PATH = os.path.join(ASSETS_DIR, 'multilabel_fold_5_distilbert', 'multilabel_fold_5_distilbert_quantized.tflite')
 TOKENIZER_FOLDER_PATH = os.path.join(ASSETS_DIR, 'tokenizer_distilbert')
 LABELS_PATH = os.path.join(ASSETS_DIR, 'labels_distilbert.pkl')
 
 ## LOAD DATA (MODEL, TOKENIZER AND LABELS)
 try:
-    model = TFAutoModelForSequenceClassification.from_pretrained(MODEL_FOLDER_PATH)
+    interpreter = tf.lite.Interpreter(model_path=QUANTIZED_MODEL_PATH)
+    interpreter.allocate_tensors()
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
     tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_FOLDER_PATH)
     
     with open(LABELS_PATH, 'rb') as f:
@@ -28,7 +31,12 @@ try:
 
 except FileNotFoundError as e:
     print(f"Error: {e}")
-    print("Please check your file paths. The script could not find a required file or folder.")
+    print("\nIMPORTANT: The required files were not found.")
+    print("Please ensure the TFLite model, tokenizer, and labels files are in the correct directories.")
+    
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+    print("This might be due to an issue with the TFLite model or tokenizer files.")
     
 else:
     ## UNSEEN ROCK NEWS HEADLINES
@@ -55,13 +63,19 @@ else:
         "Aerosmith postpones their final tour due to Steven Tyler's health issues."
     ]
 
-    ## SET THE PREDICTION THESHOLD
+    ## SET THE PREDICTION THRESHOLD
     BEST_THRESHOLD = 0.25
 
     ## HEADLINE PROCESSING AND PREDICTION
     max_sequence_length = 128
     
     results_list = []
+
+    ## INPUT TENSOR INDICES
+    input_ids_index = input_details[0]['index']
+    attention_mask_index = input_details[1]['index']
+    
+    required_dtype = input_details[0]['dtype']
 
     for headline in new_headlines:
         text_sequence = tokenizer(
@@ -71,13 +85,21 @@ else:
             max_length=max_sequence_length,
             return_tensors="tf"
         )
-        predictions = model(text_sequence)
-        probabilities = tf.nn.sigmoid(predictions.logits)[0].numpy()
+        
+        ## NUMPY ARRAYS CONVERSION
+        input_ids = text_sequence.input_ids.numpy().astype(required_dtype)
+        attention_mask = text_sequence.attention_mask.numpy().astype(required_dtype)
 
-        ## HEADLINE RAW PROBABILITIES
-        print(f"\nHeadline: '{headline}'")
-        print(f"  Raw Probabilities: {probabilities}")
-        print(f"  Labels in Order: {labels}\n")
+        ## SET THE TENSORS AMD INVOKE THE INTERPRETER 
+        interpreter.set_tensor(input_ids_index, input_ids)
+        interpreter.set_tensor(attention_mask_index, attention_mask)
+        
+        interpreter.invoke()
+
+        ## GET THE OUTPUT
+        output_data = interpreter.get_tensor(output_details[0]['index'])
+        
+        probabilities = tf.nn.sigmoid(output_data)[0].numpy()
 
         predicted_labels = []
         for i, prob in enumerate(probabilities):
@@ -93,5 +115,5 @@ else:
     df_results = pd.DataFrame(results_list)
     df_results['predicted_labels'] = df_results['predicted_labels'].apply(lambda x: ', '.join(x) if x else 'No Label')
 
-    print("\n--- Final Predictions ---")
+    print("\n## Final Predictions ##")
     print(df_results)
