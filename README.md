@@ -164,4 +164,4 @@ The quantized TFLite model is too large for Git storage. For practical purposes 
     python 03_rock_pews_nlp_dl_distilbert_inference.py
     ```
 
-**Direct download link:** [multilabel_fold5_distilbert_quantized.tflite.zip](https://github.com/IvoDSBarros/dl-rock-news-classification/releases/download/v1.0.0-model/multilabel_fold5_distilbert_quantized.tflite.zip)
+**Direct download link:** [multilabel_fold_5_distilbert_quantized.tflite.zip](https://github.com/IvoDSBarros/dl-rock-news-classification/releases/download/v1.0.0-model/multilabel_fold_5_distilbert_quantized.tflite.zip)
