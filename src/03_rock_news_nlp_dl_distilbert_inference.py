@@ -31,8 +31,20 @@ try:
 
 except FileNotFoundError as e:
     print(f"Error: {e}")
-    print("\nIMPORTANT: The required files were not found.")
-    print("Please ensure the TFLite model, tokenizer, and labels files are in the correct directories.")
+    print("\n" + "="*70)
+    print("❌ REQUIRED FILES NOT FOUND.")
+    print("="*70)
+    print("The most common issue is the TFLite model file.")
+    print("Due to GitHub restrictions, it must be downloaded separately.\n")
+    print("HOW TO FIX:")
+    print("1. Download from Releases:")
+    print("   https://github.com/IvoDSBarros/dl-rock-news-classification/releases")
+    print("2. Get the 'multilabel_fold_5_distilbert_quantized.tflite.zip' asset from the 'v1.0.0-model' release.")
+    print("3. RENAME IT: Remove the '.zip' extension.")
+    print("   - On Windows: Right-click -> Rename -> delete '.zip'")
+    print("   - On Mac/Linux: run: mv multilabel_fold_5_distilbert_quantized.tflite.zip assets/distilbert/multilabel_fold_5_distilbert/multilabel_fold_5_distilbert_quantized.tflite")
+    print("4. Ensure the tokenizer and labels are in: assets/distilbert/")
+    print("="*70)
     
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
@@ -117,3 +129,4 @@ else:
 
     print("\n## Final Predictions ##")
     print(df_results)
+
