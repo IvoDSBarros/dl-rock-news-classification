@@ -26,6 +26,8 @@ In general, the results from the experiments confirmed the superior performance 
 
 [References](#references)
 
+[Model installation and inference](#model-installation-and-inference)
+
 </details>
 
 # 1. Limitations and challenges
@@ -136,9 +138,29 @@ With the purpose of regularization, Early Stopping was introduced as a key techn
 + [Brownlee, J. (2020) Machine Learning Mastery.](https://machinelearningmastery.com/multi-label-classification-with-deep-learning/)
 + [Szymański, P., Kajdanowicz, T. (2016) A scikit-based Python environment for performing multi-label classification. Journal of Machine Learning Research, 1, 1-15.](https://www.jmlr.org/papers/volume20/17-100/17-100.pdf)
 
+# Model installation and inference
+The quantized TFLite model is too large for Git storage. For pratical purposes of demonstration, it is hosted on this repository's [Releases](https://github.com/IvoDSBarros/dl-rock-news-classification/releases) page.
 
+### Quick download & setup
 
+1.  **Download the model:**
+    Go to the [v1.0.0-model release](https://github.com/IvoDSBarros/dl-rock-news-classification/releases/tag/v1.0.0-model) and download the `multilabel_fold5_distilbert_quantized.tflite.zip` asset.
 
+3.  **Rename the file:**
+    This is a crucial step as GitHub blocks `.tflite` files. Due to this constraint it was renamed.
+    - **On Windows:** Right-click the downloaded file -> "Rename". Remove the `.zip` extension so the filename is just `multilabel_fold5_distilbert_quantized.tflite`.
+    - **On Linux/macOS:** Open a terminal in the download folder and run:
+      ```bash
+      mv multilabel_fold5_distilbert_quantized.tflite.zip multilabel_fold5_distilbert_quantized.tflite
+      ```
+      
+4.  **Place the model:**
+    Move the renamed `.tflite` file into the `assets` folder in this project. The inference script will look for it there.
 
-
-
+5.  **Run the code:**
+    You can now execute the inference script:
+    ```bash
+    python 03_rock_pews_nlp_dl_distilbert_inference.py
+    ```
+    
+**Direct download link:** [multilabel_fold5_distilbert_quantized.tflite.zip](https://github.com/IvoDSBarros/dl-rock-news-classification/releases/tag/v1.0.0-model/multilabel_fold5_distilbert_quantized.tflite.zip)
